@@ -1,5 +1,6 @@
 import { PATH_LOGIN } from "@/App";
 import { User } from "@/types/type";
+import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface NavbarProps {
@@ -62,14 +63,27 @@ export const NavBar = ({ isAuthenticated, user }: NavbarProps) => {
           </div>
 
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            {isAuthenticated ? (
-              <div>
-                <Link
-                  to={PATH_LOGIN}
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center"
-                >
-                  Login
+            {isAuthenticated && user ? (
+              <div className="flex items-center space-x-3">
+                <Link to="/cart" className="relative">
+                  <ShoppingCart className="text-black w-8 h-8" />
+                  {user && (
+                    <span className="absolute -top-1 -right-3 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                      {user.totalCart ?? 0}
+                    </span>
+                  )}
                 </Link>
+                {user.name ? (
+                  <Link to="/profile">
+                    <div className="bg-black w-8 h-8 rounded-full border-2 flex justify-center items-center ml-4">
+                      <p className="text-white">{user.name[0]}</p>
+                    </div>
+                  </Link>
+                ) : (
+                  <p className="text-blue-700 font-semibold pl-4">
+                    Welcome, User
+                  </p>
+                )}
               </div>
             ) : (
               <div>
@@ -99,9 +113,9 @@ export const NavBar = ({ isAuthenticated, user }: NavbarProps) => {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M1 1h15M1 7h15M1 13h15"
                       />
                     </svg>
