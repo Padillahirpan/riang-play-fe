@@ -1,7 +1,7 @@
 export type User = {
-   id: string
+   id: number
 
-   fullname?: string
+   name?: string
    username: string
    email: string
 
@@ -55,3 +55,9 @@ export type CartItem = {
 
    totalPrice: number
 }
+
+export interface ApiResponse<T> {
+   status: string;
+   message: string;
+   data: T;
+ }

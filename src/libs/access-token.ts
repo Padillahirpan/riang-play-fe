@@ -9,7 +9,7 @@ export const accessTokenCookie = new ReactCookie(null, {
     sameSite: "none",
     secure: true,
     expires: createDate(new TimeSpan(30, "d")),
-})
+});
 
 export const accessToken = {
     get() {

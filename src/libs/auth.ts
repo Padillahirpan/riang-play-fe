@@ -1,5 +1,5 @@
 import { UserLogin, UserRegister } from "@/schemas/user"
-import { User } from "@/types/type"
+import { ApiResponse, User } from "@/types/type"
 import { accessToken } from "./access-token"
 import { BACKEND_API_URL } from "./env"
 import { toast } from "@/hooks/use-toast"
@@ -8,9 +8,14 @@ export type Auth = {
    isAuthenticated: boolean
    getToken: () => string
    register(userRegister: UserRegister): Promise<User | null>
-   login(userLogin: UserLogin): Promise<void | null>
+   login(userLogin: UserLogin): Promise<LoginData | null | undefined>
    checkUser(): Promise<User | undefined>
    logout(): void
+}
+
+interface LoginData {
+    token: string;
+    user: User;
 }
 
 export const auth: Auth = {
@@ -25,21 +30,21 @@ export const auth: Auth = {
            method: "POST",
            body: JSON.stringify(userRegister),
            headers: { "Content-Type": "application/json" },
-       })
+       });
 
        if (!response.ok) {
            const errorResponse = await response.json()
            toast({
                variant: "destructive",
-               title: `${errorResponse.error}`,
-           })
+               title: `${errorResponse.message}`,
+           });
            return null
        }
 
        const user: User = await response.json()
        toast({
            title: `Success register account!`,
-       })
+       });
        return user
    },
 
@@ -49,48 +54,59 @@ export const auth: Auth = {
                method: "POST",
                body: JSON.stringify(userLogin),
                headers: { "Content-Type": "application/json" },
-           })
+           });
+
 
            if (!response.ok) {
-               const errorResponse = await response.json()
+               const errorResponse = await response.json();
                toast({
                    variant: "destructive",
                    title: `${errorResponse.error}`,
-               })
+               });
            }
 
-           const data: { token?: string; user?: User } = await response.json()
-           if (!data.token) return null
+           const data: ApiResponse<LoginData> = await response.json();
+           
 
-           accessToken.set(data.token)
+           if (!data.data.token) return null
+
+           accessToken.set(data.data.token)
            auth.isAuthenticated = true
+
+           return data.data;
        } catch (error) {
-           accessToken.remove()
+           accessToken.remove();
            auth.isAuthenticated = false
        }
    },
 
    async checkUser() {
-       const token = accessToken.get()
+       const token = accessToken.get();
 
        if (token) {
            try {
                const response = await fetch(`${BACKEND_API_URL}/auth/me`, {
                    headers: { Authorization: `Bearer ${token}` },
                })
-               const jsonResponse = await response.json()
-               const user: User = jsonResponse.data
+               const jsonResponse: ApiResponse<User> = await response.json();
+
+               const user: User = jsonResponse.data;
+
 
                auth.isAuthenticated = true
                return user
            } catch (error) {
+            toast({
+                variant: "destructive",
+                title: `${error}`,
+            });
                accessToken.remove()
                auth.isAuthenticated = false
            }
        }
    },
 
-   logout() {
+   async logout() {
        accessToken.remove()
        auth.isAuthenticated = false
    },
