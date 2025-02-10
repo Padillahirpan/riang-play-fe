@@ -1,5 +1,5 @@
-import NewArrivalCard from "../home/NewArrivalCard";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const NewArrivalProduct = () => {
   const cards = [
@@ -34,13 +34,12 @@ const NewArrivalProduct = () => {
     <div className="flex flex-col gap-4 items-center">
       <div className="flex flex-row gap-4 overflow-x-auto p-4">
         {cards.map((card, index) => (
-          <NewArrivalCard />
-          // <Card
+          <Card
           //  key={index}
           //  title={card.title}
           //  description={card.description}
           //  imageUrl={card.imageUrl}
-          // />
+          />
         ))}
       </div>
       <div>
