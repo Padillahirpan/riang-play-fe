@@ -1,23 +1,23 @@
-import { Outlet } from "react-router-dom";
-import { NavBar } from "../../components/Navbar";
+import { Outlet, ScrollRestoration, useLoaderData } from "react-router-dom";
+import FooterBase from "@/components/Footer";
+import { CookiesProvider } from "react-cookie";
+import { loader } from "./root-loader";
+import { NavBar } from "@/components/Navbar";
 
 const BaseLayout = () => {
-  //   const { user } = useLoaderData() as Awaited<ReturnType<typeof RootLoader>>;
+  const { user } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <NavBar />
-      <Outlet />
-    </div>
-    //   <CookiesProvider defaultSetOptions={{ path: "/" }}>
-    //     <div className='flex flex-col min-h-screen '>
-    //       <Navbar user={user} />
-    //       <main className='flex-[1]'>
-    //         <Outlet />
-    //       </main>
-    //       <Footer />
-    //       <ScrollRestoration />
-    //     </div>
-    //   </CookiesProvider>
+    <CookiesProvider defaultSetOptions={{ path: "/" }}>
+      <ScrollRestoration />
+      <div className="flex flex-col min-h-screen bg-gradient-to-r from-red-100 via-gray-100 to-stone-100">
+        <NavBar user={user} />
+        <main className="flex-[1]">
+          <Outlet />
+        </main>
+        <FooterBase />
+      </div>
+    </CookiesProvider>
   );
 };
 
