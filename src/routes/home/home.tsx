@@ -1,10 +1,11 @@
+import { useLoaderData } from "react-router-dom";
 import { HomeBanner } from "../../components/shared/Banner";
 import NewArrivalProduct from "../../components/shared/NewArrivalProduct";
+import { loader } from "./home-loader";
 
 const HomeRoute = () => {
-  // const { products } = useLoaderData() as Awaited<
-  //   ReturnType<typeof HomeLoader>
-  // >;
+  const products = useLoaderData() as Awaited<ReturnType<typeof loader>>;
+
   return (
     <div className="min-h-screen flex flex-col gap-4 pt-4 pb-8">
       <HomeBanner />
@@ -14,7 +15,7 @@ const HomeRoute = () => {
         <p>
           We're updated our product. The new products you can get in our store.
         </p>
-        <NewArrivalProduct />
+        <NewArrivalProduct products={products} />
       </div>
     </div>
   );
