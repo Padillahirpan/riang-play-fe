@@ -27,23 +27,49 @@ export async function loader({ params }: LoaderFunctionArgs) {
 export async function addProductToCart(request: AddToCartRequest) {
   const token = accessToken.get();
 
-  const response = await axios.post(`${BACKEND_API_URL}/cart`, request, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (response.status !== 201) {
-    toast({
-      variant: "destructive",
-      title: `${response.data.message}`,
+  try {
+    const response = await axios.post(`${BACKEND_API_URL}/cart`, request, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
+
+    if (response.status !== 201) {
+      toast({
+        variant: "destructive",
+        title: `${response.data.message}`,
+      });
+      return null;
+    }
+
+    const data = response.data;
+    toast({
+      title: `Success added to your cart!`,
+    });
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data);
+      if (error.response?.status === 401) {
+        toast({
+          variant: "destructive",
+          title: "Unauthorized: Invalid or expired token",
+        });
+        accessToken.remove();
+        // Optionally, redirect to login page or prompt user to log in again
+      } else {
+        toast({
+          variant: "destructive",
+          title: `${error.response?.data?.message || error.message}`,
+        });
+      }
+    } else {
+      console.error("Unexpected error:", error);
+      toast({
+        variant: "destructive",
+        title: `Unexpected error: ${error}`,
+      });
+    }
     return null;
   }
-
-  const data = response.data;
-  toast({
-    title: `Success added to your cart!`,
-  });
-  return data;
 }
