@@ -27,13 +27,6 @@ const CartItemList = ({
         ) : (
           <p>Your cart is empty, please add your favorite item 😃</p>
         )}
-        {carts.map((cart, index) => (
-          <CartCardItem
-            key={index}
-            cart={cart}
-            onClick={() => onClickItem(cart)}
-          />
-        ))}
       </div>
       <div className="items-center">
         <Button
