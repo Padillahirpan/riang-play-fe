@@ -1,5 +1,4 @@
 import { Product } from "@/types/type";
-import banner_1 from "../../assets/images/banner_1.jpg";
 import { rupiah } from "@/libs/utils";
 import { Card, CardContent, CardHeader } from "../ui/card";
 

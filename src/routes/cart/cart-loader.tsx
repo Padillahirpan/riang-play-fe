@@ -2,9 +2,8 @@ import { toast } from "@/hooks/use-toast";
 import { accessToken } from "@/libs/access-token";
 import { BACKEND_API_URL } from "@/libs/env";
 import { ApiResponse, CartResponse } from "@/types/type";
-import { LoaderFunctionArgs } from "react-router-dom";
 
-export async function loader({ params }: LoaderFunctionArgs) {
+export async function loader() {
   try {
     const token = accessToken.get();
 

@@ -3,10 +3,9 @@ import { accessToken } from "@/libs/access-token";
 import { BACKEND_API_URL } from "@/libs/env";
 import { AddToCartRequest } from "@/schemas/cart";
 import { ApiResponse, Product } from "@/types/type";
-import { LoaderFunctionArgs } from "react-router-dom";
 import axios from "axios";
 
-export async function loader({ params }: LoaderFunctionArgs) {
+export async function loader() {
   try {
     const response = await fetch(`${BACKEND_API_URL}/products`);
     const jsonResponse: ApiResponse<Product[]> = await response.json();
