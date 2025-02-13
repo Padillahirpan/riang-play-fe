@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BaseLayout from "./routes/root/base-layout";
 import HomeRoute from "./routes/home/home";
-import LoginRoute from "./pages/login/login";
-import RegisterRoute from "./pages/register/register";
+import LoginRoute from "./routes/login/login";
+import RegisterRoute from "./routes/register/register";
 import { loader as rootLoader } from "./routes/root/root-loader";
 import { loader as homeLoader } from "./routes/home/home-loader";
 import ProfileRoute from "./routes/profile/profile";

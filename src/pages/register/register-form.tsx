@@ -10,10 +10,17 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/libs/utils";
 import { Label } from "@radix-ui/react-label";
 
+interface RegisterFormProps {
+  className?: string;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  [key: string]: any; // To allow other props
+}
+
 export function RegisterForm({
   className,
+  onSubmit,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: RegisterFormProps) {
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -24,13 +31,14 @@ export function RegisterForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={(event) => onSubmit(event)}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">Name</Label>
+                <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
-                  type="emnameail"
+                  type="text"
+                  name="name"
                   placeholder="Dharma"
                   required
                 />
@@ -40,6 +48,7 @@ export function RegisterForm({
                 <Input
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="m@example.com"
                   required
                 />
@@ -51,6 +60,7 @@ export function RegisterForm({
                 <Input
                   id="password"
                   type="password"
+                  name="password"
                   placeholder="###"
                   required
                 />

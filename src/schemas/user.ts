@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 export const UserRegisterSchema = z.object({
-   username: z.string().min(8, "Username must be at least 8 characters long"),
+   name: z.string().min(8, "Name must be at least 8 characters long"),
    email: z.string().email("Invalid email address"),
    password: z
        .string()
