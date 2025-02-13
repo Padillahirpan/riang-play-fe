@@ -11,6 +11,8 @@ import ProductDetailRoute from "./routes/product/product-detail";
 import { loader as productLoader } from "./routes/product/product-loader";
 import CartDetailRoute from "./routes/cart/cart-detail";
 import { loader as cartLoader } from "./routes/cart/cart-loader";
+import ProductRoute from "./routes/product/all-product";
+import { loader as productsLoader } from "./routes/product/all-product-loader";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,11 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <CartDetailRoute />,
         loader: cartLoader,
+      },
+      {
+        path: "/products",
+        element: <ProductRoute />,
+        loader: productsLoader,
       },
     ],
   },

@@ -17,16 +17,14 @@ export const ProductDetailPage = ({
 }: ProductDetailProps) => {
   const [qtyToBuy, setQtyToBuy] = useState(1);
   return (
-    <div className="flex min-h-svh flex-col items-center bg-whitejustify-normal p-6 md:p-10">
+    <div className="flex bg-neutral-100 bg-opacity-50 min-h-svh flex-col items-center bg-whitejustify-normal p-6 md:p-10">
       <div className="w-full h-full grid p-0 md:grid-cols-2">
-        <div className="relative h-full p-6 md:p-8 bg-black">
-          <img
-            src={product.imageUrl}
-            alt={product.name}
-            className="absolute inset-0 object-cover dark:brightness-[0.2] dark:grayscale"
-          />
-        </div>
-        <div className="relative h-full hidden md:block p-4">
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className="h-full w-full object-cover"
+        />
+        <div className="relative items-center h-full hidden md:block p-4">
           <h1 className="text-2xl font-bold">{product.name}</h1>
           <h2 className="text-l font-light text-neutral-800 py-2">
             {rupiah(product.price)}
