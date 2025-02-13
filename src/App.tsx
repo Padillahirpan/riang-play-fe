@@ -7,40 +7,49 @@ import { loader as rootLoader } from "./routes/root/root-loader";
 import { loader as homeLoader } from "./routes/home/home-loader";
 import ProfileRoute from "./routes/profile/profile";
 import { loader as profileLoader } from "./routes/profile/profile-loader";
-
-export const PATH_REGISTER = "/register";
-export const PATH_LOGIN = "/login";
-export const PATH_HOME = "/";
-export const PATH_PROFILE = "/profile";
+import ProductDetailRoute from "./routes/product/product-detail";
+import { loader as productLoader } from "./routes/product/product-loader";
+import CartDetailRoute from "./routes/cart/cart-detail";
+import { loader as cartLoader } from "./routes/cart/cart-loader";
 
 const router = createBrowserRouter([
   {
     id: "root",
-    path: PATH_HOME,
+    path: "/",
     element: <BaseLayout />,
     // errorElement: <ErrorPage />,
     loader: rootLoader,
     children: [
       {
-        path: PATH_HOME,
+        path: "/",
         element: <HomeRoute />,
         loader: homeLoader,
       },
       {
-        path: PATH_PROFILE,
+        path: "/profile",
         element: <ProfileRoute />,
         loader: profileLoader,
+      },
+      {
+        path: "/product/:slug",
+        element: <ProductDetailRoute />,
+        loader: productLoader,
+      },
+      {
+        path: "/cart",
+        element: <CartDetailRoute />,
+        loader: cartLoader,
       },
     ],
   },
   {
-    path: PATH_LOGIN,
+    path: "/login",
     element: <LoginRoute />,
     // errorElement: <ErrorPage />,
     // loader: loginLoader,
   },
   {
-    path: PATH_REGISTER,
+    path: "/register",
     element: <RegisterRoute />,
     // errorElement: <ErrorPage />,
     // loader: EditGoal.loader,

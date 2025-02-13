@@ -1,7 +1,7 @@
-import { PATH_LOGIN } from "@/App";
 import { User } from "@/types/type";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
 
 interface NavbarProps {
   isAuthenticated?: boolean;
@@ -35,27 +35,11 @@ export const NavBar = ({ isAuthenticated, user }: NavbarProps) => {
               <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-0 md:border-0">
                 <li>
                   <a
-                    href="#"
-                    className="block py-2 px-2 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+                    href="/products"
+                    className="block py-2 px-2 text-gray-900 bg-blue-700 rounded md:bg-transparent  md:p-0"
                     aria-current="page"
                   >
                     All Product
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-                  >
-                    Surprise Deal
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
-                  >
-                    Accessories
                   </a>
                 </li>
               </ul>
@@ -88,11 +72,8 @@ export const NavBar = ({ isAuthenticated, user }: NavbarProps) => {
             ) : (
               <div>
                 <div>
-                  <Link
-                    to={PATH_LOGIN}
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center"
-                  >
-                    Login
+                  <Link to={"/login"}>
+                    <Button>Login</Button>
                   </Link>
                 </div>
                 <div>
