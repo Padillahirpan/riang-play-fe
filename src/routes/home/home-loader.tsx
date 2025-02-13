@@ -19,5 +19,5 @@ export async function loader() {
 
   const responseData: ApiResponse<Product[]> = await response.json();
 
-  return responseData.data.splice(4);
+  return responseData.data.splice(0, 4);
 }
