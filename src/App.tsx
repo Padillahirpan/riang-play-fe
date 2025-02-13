@@ -19,7 +19,6 @@ const router = createBrowserRouter([
     id: "root",
     path: "/",
     element: <BaseLayout />,
-    // errorElement: <ErrorPage />,
     loader: rootLoader,
     children: [
       {
@@ -52,14 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginRoute />,
-    // errorElement: <ErrorPage />,
-    // loader: loginLoader,
   },
   {
     path: "/register",
     element: <RegisterRoute />,
-    // errorElement: <ErrorPage />,
-    // loader: EditGoal.loader,
   },
 ]);
 
