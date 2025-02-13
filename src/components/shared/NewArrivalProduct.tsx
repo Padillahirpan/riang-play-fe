@@ -4,14 +4,19 @@ import { Button } from "../ui/button";
 
 interface ProductProps {
   products?: Product[];
+  onClick: (product: Product) => void;
 }
 
-const NewArrivalProduct = ({ products = [] }: ProductProps) => {
+const NewArrivalProduct = ({ products = [], onClick }: ProductProps) => {
   return (
     <div className="flex flex-col gap-4 items-center">
-      <div className="flex flex-row gap-4 overflow-x-auto p-4">
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {products.map((card, index) => (
-          <NewArrivalCard key={index} product={card} />
+          <NewArrivalCard
+            key={index}
+            product={card}
+            onClick={() => onClick(card)}
+          />
         ))}
       </div>
       <div>
