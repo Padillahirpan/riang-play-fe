@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/libs/utils";
 import { Label } from "@radix-ui/react-label";
+import { Link } from "react-router-dom";
 
 interface LoginFormProps {
   className?: string;
@@ -62,10 +63,10 @@ export function LoginForm({ className, onSubmit, ...props }: LoginFormProps) {
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <a href="/register" className="underline underline-offset-4">
-                Sign up
-              </a>
+              <Link to={"/register"}>
+                Don&apos;t have an account?{" "}
+                <p className="underline underline-offset-4">Sign up</p>
+              </Link>
             </div>
           </form>
         </CardContent>
