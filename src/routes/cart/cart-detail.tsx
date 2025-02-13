@@ -29,7 +29,7 @@ const CartDetailRoute = () => {
   }
 
   return (
-    <div className="flex min-h-svh flex-col items-center bg-whitejustify-normal p-6 md:p-10">
+    <div className="flex bg-white bg-opacity-40 min-h-svh flex-col items-center bg-whitejustify-normal p-6 md:p-10">
       <div className="w-full h-full grid p-0 md:grid-cols-2 bg-white rounded-lg">
         <div className="relative h-full p-6 md:p-8">
           <p className="text-lg">My Cart</p>
