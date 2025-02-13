@@ -1,7 +1,6 @@
 import { auth } from "@/libs/auth";
 import { LoginForm } from "./login-form";
 import { redirect, useNavigate } from "react-router-dom";
-import { PATH_HOME } from "@/App";
 
 export async function loader() {
   const user = await auth.checkUser();
@@ -25,7 +24,7 @@ const LoginRoute = () => {
       return;
     }
 
-    navigate(PATH_HOME);
+    navigate("/");
   };
 
   return (

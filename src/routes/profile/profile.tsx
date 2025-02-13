@@ -2,7 +2,6 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { loader } from "./profile-loader";
 import { ProfilePage } from "@/pages/profile/profile";
 import { auth } from "@/libs/auth";
-import { PATH_HOME } from "@/App";
 
 const ProfileRoute = () => {
   const navigate = useNavigate();
@@ -11,7 +10,7 @@ const ProfileRoute = () => {
 
   const onLogout = async () => {
     auth.logout();
-    navigate(PATH_HOME);
+    navigate("/");
   };
 
   return (

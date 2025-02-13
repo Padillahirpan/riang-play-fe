@@ -12,14 +12,12 @@ export type User = {
 }
 
 export type Product = {
-   id: string
+   id: number
 
-   slug: string
    name: string
-   imageURL: string
+   imageUrl: string
    price: number
    description: string
-   sku: string
    stock: number
 
    createdAt: Date
@@ -61,3 +59,8 @@ export interface ApiResponse<T> {
    message: string;
    data: T;
  }
+
+export type CartResponse = {
+   totalAmount: number,
+   items: CartItem[],
+} 
