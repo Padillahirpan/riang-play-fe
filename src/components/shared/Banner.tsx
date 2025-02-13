@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import banner_1 from "../../assets/images/banner_1.jpg";
-import banner_2 from "../../assets/images/banner_2.jpg";
+import banner_1 from "../../assets/images/bg-rp-1.png";
+import banner_2 from "../../assets/images/bg-rp-2.png";
 
 export const HomeBanner = () => {
   useEffect(() => {

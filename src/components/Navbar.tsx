@@ -2,6 +2,7 @@ import { User } from "@/types/type";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import logo from "../assets/images/rp-logo.svg";
 
 interface NavbarProps {
   isAuthenticated?: boolean;
@@ -18,11 +19,7 @@ export const NavBar = ({ isAuthenticated, user }: NavbarProps) => {
               href="/"
               className="flex items-center space-x-3 rtl:space-x-reverse pr-8"
             >
-              <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="h-8"
-                alt="RiangPlay Logo"
-              />
+              <img src={logo} className="h-8" alt="RiangPlay Logo" />
               <span className="self-center text-2xl font-semibold whitespace-nowrap ">
                 RiangPlay
               </span>
