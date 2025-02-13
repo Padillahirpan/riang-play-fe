@@ -15,7 +15,7 @@ export const ProductDetailPage = ({
   product,
   onClickAddToCart,
 }: ProductDetailProps) => {
-  const [qtyToBuy, setQtyToBuy] = useState(1);
+  const [qtyToBuy, setQtyToBuy] = useState(product.stock <= 0 ? 0 : 1);
   return (
     <div className="flex bg-neutral-100 bg-opacity-50 min-h-svh flex-col items-center bg-whitejustify-normal p-6 md:p-10">
       <div className="w-full h-full grid p-0 md:grid-cols-2">
@@ -48,6 +48,7 @@ export const ProductDetailPage = ({
                   }
                   setQtyToBuy(qtyToBuy - 1);
                 }}
+                disabled={product.stock <= 0}
               >
                 -
               </Button>
@@ -57,23 +58,23 @@ export const ProductDetailPage = ({
                 onClick={(_) => {
                   setQtyToBuy(qtyToBuy + 1);
                 }}
+                disabled={product.stock <= 0}
               >
                 +
               </Button>
             </div>
-            {qtyToBuy > 0 && (
-              <Button
-                className="py-4 px-8 mx-6"
-                onClick={(_) => {
-                  if (qtyToBuy < MIN_PURCHASE) {
-                    return;
-                  }
-                  onClickAddToCart(product, qtyToBuy);
-                }}
-              >
-                Add to cart
-              </Button>
-            )}
+            <Button
+              className="py-4 px-8 mx-6"
+              onClick={(_) => {
+                if (qtyToBuy < MIN_PURCHASE) {
+                  return;
+                }
+                onClickAddToCart(product, qtyToBuy);
+              }}
+              disabled={product.stock <= 0}
+            >
+              Add to cart
+            </Button>
           </div>
 
           <Separator className="my-4" orientation="horizontal" />
