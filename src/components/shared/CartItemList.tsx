@@ -16,6 +16,17 @@ const CartItemList = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="">
+        {carts.length > 0 ? (
+          carts.map((cart, index) => (
+            <CartCardItem
+              key={index}
+              cart={cart}
+              onClick={() => onClickItem(cart)}
+            />
+          ))
+        ) : (
+          <p>Your cart is empty, please add your favorite item 😃</p>
+        )}
         {carts.map((cart, index) => (
           <CartCardItem
             key={index}

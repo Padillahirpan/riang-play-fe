@@ -37,13 +37,10 @@ const CartDetailRoute = () => {
 
           <CartItemList
             carts={cartDetail.items}
-            onClickItem={(cart) => {
-              console.log("xyzCart Clicked ", cart);
+            onClickItem={() => {
               navigate(`/products`);
             }}
             onClickSeeProducts={() => {
-              console.log("xyzCart product all ");
-
               navigate(`/products`);
             }}
           />
